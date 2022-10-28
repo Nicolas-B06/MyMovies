@@ -1,17 +1,10 @@
 <?php
 
-require_once './class/Playlist.php';
-
-$playlist = new Playlist();
-$all = $playlist->fetchAll();
-var_dump($all);
-exit();
-
 /* fonction aqui supprime les tabulations, sauts de ligne et les retours à la ligne */
 
 function ob_html_compress($buf)
 {
-    return str_replace(array("\n", "\r", "\t"), '', $buf);
+  return str_replace(array("\n", "\r", "\t"), '', $buf);
 }
 
 ob_start('ob_html_compress');

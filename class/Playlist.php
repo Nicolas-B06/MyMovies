@@ -89,12 +89,16 @@ class Playlist
     $sql .=  " WHERE id = :id";
     try {
       $stm = $this->db->connect()->prepare($sql);
-      $stm->execute([
+      $res = $stm->execute([
         'name' => $this->name,
         'isPrivate' => $this->isPrivate,
         'duration' => $this->duration,
         'id' => $this->id,
       ]);
+
+      if ($res) {
+        $this->fetchMovies();
+      }
     } catch (Exception $e) {
       die($e->getMessage());
     }
