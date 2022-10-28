@@ -6,14 +6,14 @@ class Playlist
 {
   private $id, $userId, $name, $isPrivate, $duration, $movies, $db, $table, $moviesTable;
 
-  public function __construct($userId = null, $id = null, $name = null, $isPrivate = null, $duration = 0)
+  public function __construct($userId = null, $name = null, $isPrivate = null, $duration = 0)
   {
     $this->db = new DB();
     $this->table = "playlist";
     $this->moviesTable = "playlist_movie";
 
     $this->userId = $userId;
-    $this->id = $id;
+    $this->id = null;
     $this->name = $name;
     $this->isPrivate = $isPrivate;
     $this->duration = $duration;
@@ -24,17 +24,18 @@ class Playlist
   {
     $sql = "SELECT * FROM $this->table WHERE id = :id";
     try {
-
       $stm = $this->db->connect()->prepare($sql);
       $stm->execute(["id" => $id]);
       $row = $stm->fetch();
 
-      $this->userId = $row->userId;
-      $this->id = $row->id;
-      $this->name = $row->name;
-      $this->isPrivate = $row->isPrivate;
-      $this->duration = $row->duration;
-      $this->fetchMovies();
+      if ($row) {
+        $this->userId = $row->userId;
+        $this->id = $row->id;
+        $this->name = $row->name;
+        $this->isPrivate = $row->isPrivate;
+        $this->duration = $row->duration;
+        $this->fetchMovies();
+      }
     } catch (Exception $e) {
       die($e->getMessage());
     }
@@ -46,7 +47,14 @@ class Playlist
     try {
       $stm = $this->db->connect()->query($sql);
       $stm->execute();
-      return $stm->fetchAll();
+      $rows = $stm->fetchAll();
+
+      $playlists = [];
+      foreach ($rows as $row) {
+        $playlists[] = new self($row->userId, $row->id, $row->name, $row->isPrivate, $row->duration);
+      }
+
+      return $playlists;
     } catch (Exception $e) {
       die($e->getMessage());
     }
@@ -54,16 +62,50 @@ class Playlist
 
   public function insert()
   {
-    $sql = "INSERT INTO $this->table (userId, name, isPrivate, duration) VALUES(:userId, :name, :isPrivate, :duration)";
+    $sql = "INSERT INTO $this->table (userId, name, isPrivate, duration) ";
+    $sql .= "VALUES(:userId, :name, :isPrivate, :duration)";
     try {
       $stm = $this->db->connect()->prepare($sql);
-      $stm->execute([
+      $res = $stm->execute([
         'userId' => $this->userId,
         'name' => $this->name,
         'isPrivate' => $this->isPrivate,
         'duration' => $this->duration,
       ]);
-      $this->id = $this->db->connect()->lastInsertId();
+      if ($res) {
+        $this->id = $this->db->connect()->lastInsertId();
+      }
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function update()
+  {
+    $sql = "UPDATE $this->table SET";
+    $sql .=  " name = :name,";
+    $sql .=  " isPrivate = :isPrivate,";
+    $sql .=  " duration = :duration";
+    $sql .=  " WHERE id = :id";
+    try {
+      $stm = $this->db->connect()->prepare($sql);
+      $stm->execute([
+        'name' => $this->name,
+        'isPrivate' => $this->isPrivate,
+        'duration' => $this->duration,
+        'id' => $this->id,
+      ]);
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function delete($id)
+  {
+    $sql = "DELETE FROM $this->table WHERE id = :id";
+    try {
+      $stm = $this->db->connect()->prepare($sql);
+      $stm->execute(["id" => $id]);
     } catch (Exception $e) {
       die($e->getMessage());
     }
@@ -76,8 +118,44 @@ class Playlist
       $stm = $this->db->connect()->prepare($sql);
       $stm->execute(['id' => $this->id]);
       $rows = $stm->fetchAll();
-
       $this->movies = $rows;
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function addMovie($movieId, $duration)
+  {
+    $sql = "INSERT INTO $this->moviesTable (playlistId, movieId)";
+    $sql .= " VALUES(:playlistId, :movieId)";
+    try {
+      $stm = $this->db->connect()->prepare($sql);
+      $res = $stm->execute([
+        'playlistId' => $this->id,
+        'movieId' => $movieId,
+      ]);
+      if ($res) {
+        $this->duration += $duration;
+        $this->update();
+      }
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function removeMovie($movieId, $duration)
+  {
+    $sql = "DELETE FROM $this->moviesTable WHERE movieId = :movieId AND playlistId = :playlistId";
+    try {
+      $stm = $this->db->connect()->prepare($sql);
+      $res = $stm->execute([
+        "movieId" => $movieId,
+        "playlistId" => $this->id
+      ]);
+      if ($res) {
+        $this->duration -= $duration;
+        $this->update();
+      }
     } catch (Exception $e) {
       die($e->getMessage());
     }
@@ -89,18 +167,6 @@ class Playlist
   public function getId()
   {
     return $this->id;
-  }
-
-  /**
-   * Set the value of id
-   *
-   * @return  self
-   */
-  public function setId($id)
-  {
-    $this->id = $id;
-
-    return $this;
   }
 
   /**
