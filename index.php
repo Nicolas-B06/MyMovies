@@ -3,9 +3,8 @@
 require_once './class/Playlist.php';
 
 $playlist = new Playlist();
-$all = $playlist->fetchAll();
-var_dump($all);
-exit();
+
+$playlist->fetch(5);
 
 /* fonction aqui supprime les tabulations, sauts de ligne et les retours à la ligne */
 
@@ -60,7 +59,6 @@ ob_start('ob_html_compress');
 
 <body>
     <noscript>il faut autoriser le javascript</noscript>
-
     <header>
     <nav class="navbar navbar-expand-lg bg-dark">
   <div class="container-fluid">

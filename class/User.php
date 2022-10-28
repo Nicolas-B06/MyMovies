@@ -26,8 +26,8 @@ class User
         $sql = "INSERT INTO $this->table (name, password, email, role) VALUES(:name, :password, :email, :role)";
         try {
             $stm = $this->db->connect()->prepare($sql);
-            $stm->execute(['name' => $this->name, 'password' => $this->password, 'email' => $this->email, 'role' => $this->role]);
-            $this->id = $this->db->connect()->lastInsertId();
+            $res = $stm->execute(['name' => $this->name, 'password' => $this->password, 'email' => $this->email, 'role' => $this->role]);
+            if($res){$this->id = $this->db->connect()->lastInsertId();}
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -40,12 +40,13 @@ class User
             $stm = $this->db->connect()->prepare($sql);
             $stm->execute(['id' => $id]);
             $row = $stm->fetch();
-
-            $this->id = $row->id;
-            $this->name = $row->name;
-            $this->password = $row->password;
-            $this->email = $row->email;
-            $this->role = $row->role;
+            if($row) {
+                $this->id = $row->id;
+                $this->name = $row->name;
+                $this->password = $row->password;
+                $this->email = $row->email;
+                $this->role = $row->role;
+            }
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -59,6 +60,12 @@ class User
             $stm->execute();
             $rows = $stm->fetchAll();
             return $rows;
+
+            $users=[];
+            foreach ($rows as $row) {
+                $user = new User($row->id, $row->name, $row->password, $row->email, $row->role);
+                $users[] = $user;
+            }
         } catch (Exception $e) {
             die($e->getMessage());
         }
