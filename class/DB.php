@@ -9,7 +9,7 @@ class DB
     $this->host = "localhost";
     $this->dbname = "my-movies";
     $this->user = "root";
-    $this->password = 'root';
+    $this->password = '';
 
     $this->init();
   }
