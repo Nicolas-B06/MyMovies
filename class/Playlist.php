@@ -13,7 +13,6 @@ class Playlist
     $this->moviesTable = "playlist_movie";
 
     $this->userId = $userId;
-    $this->id = null;
     $this->name = $name;
     $this->isPrivate = $isPrivate;
     $this->duration = $duration;
