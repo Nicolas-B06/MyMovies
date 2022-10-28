@@ -1,4 +1,4 @@
-<?php include 'index.php'; ?>
+
 
 <main>
 
@@ -64,5 +64,3 @@
     </section>
 
 </main>
-
-<?php include './includes/footer.php'; ?>

@@ -1,8 +1,4 @@
-<?php
 
-include 'index.php';
-
-?>
 
 <main>
     <div class="d-flex justify-content-center">

@@ -1,13 +1,10 @@
-<?php
 
-include 'index.php';
 
-?>
 
 <main>
     <div class="d-flex justify-content-center">
     <div class="card w-50 ">
-        <h5 class="card-header text-center">Connexion</h5>
+        <h5 class="card-header text-center">Inscription</h5>
         <div class="card-body">
             <div class="mb-3 row">
                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
@@ -18,17 +15,17 @@ include 'index.php';
                 <input type="password" class="form-control" id="inputPassword">
             </div>
         </div>
-        <div class="card-footer text-center">
-            <a><button type="button" class="btn btn-primary">Connexion</button></a>
-            <p>Vous n'avez pas de compte ? <a href="" class="">Inscrivez-vous</a></p>
+        <div class="card-footer ">
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <div class="text-center">
+                <a><button type="button" class="btn btn-primary">Inscris toi</button></a>
+            </div>
         </div>
     </div>
     </div>
 </main>
 
 
-<?php
-
-include './includes/footer.php';
-
-?>
