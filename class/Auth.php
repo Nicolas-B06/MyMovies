@@ -1,10 +1,11 @@
 <?php
 
 include_once "DB.php";
+include_once "User.php";
 
 class Auth
 {
-  private $db;
+  protected $db;
 
   public function __construct()
   {
@@ -23,14 +24,20 @@ class Auth
     }
   }
 
-  public function isLogged()
-  {
-    return (!isset($_SESSION['auth']) || empty($_SESSION['auth']));
-  }
-
   public function logout()
   {
     unset($_SESSION['auth']);
     session_destroy();
+  }
+
+  public function register()
+  {
+  }
+
+  public static function check()
+  {
+    if (!isset($_SESSION['auth']) || empty($_SESSION['auth'])) {
+      http_response_code(403);
+    }
   }
 }
