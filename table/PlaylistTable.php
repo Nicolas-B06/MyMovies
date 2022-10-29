@@ -8,5 +8,5 @@ require_once "./model/Playlist.php";
 class PlaylistTable extends Table
 {
   protected $table = 'playlist';
-  protected $model = Playlist::class;
+  protected $class = Playlist::class;
 }

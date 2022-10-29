@@ -6,7 +6,7 @@ class Playlist
 {
   private $id, $userId, $name, $isPrivate, $duration;
 
-  public function __construct($id = null, $userId = null, $name = null, $duration = null, $isPrivate = null)
+  public function __construct($id = null, $userId = null, $name = null, $duration = 0, $isPrivate = 0)
   {
     $this->id = $id;
     $this->userId = $userId;
