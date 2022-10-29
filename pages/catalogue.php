@@ -1,7 +1,6 @@
-
+<?php include './includes/header.php' ?>
 
 <main>
-
     <section class="d-flex justify-content-center">
         <div id="carouselExampleIndicators" class="carousel slide w-25" data-bs-ride="true">
             <div class="carousel-indicators">
@@ -62,5 +61,6 @@
             </div>
         </div>
     </section>
-
 </main>
+
+<?php include './includes/footer.php' ?>
