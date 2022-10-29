@@ -14,7 +14,7 @@ class User
     public function __construct($name = null, $password = null, $email = null, $role = null)
     {
         $this->db = new DB();
-        $this->table = "users";
+        $this->table = "user";
 
         $this->name = $name;
         $this->password = $password;
