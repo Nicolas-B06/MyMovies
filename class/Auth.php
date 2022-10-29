@@ -23,6 +23,11 @@ class Auth
     }
   }
 
+  public function isLogged()
+  {
+    return (!isset($_SESSION['auth']) || empty($_SESSION['auth']));
+  }
+
   public function logout()
   {
     unset($_SESSION['auth']);
