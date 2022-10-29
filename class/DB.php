@@ -1,15 +1,17 @@
 <?php
 
+require_once dirname(__DIR__) . '/config.php';
+
 class DB
 {
   private $host, $dbname, $user, $password, $dbh;
 
   public function __construct()
   {
-    $this->host = "localhost";
-    $this->dbname = "my-movies";
-    $this->user = "root";
-    $this->password = '';
+    $this->host = DB_HOST;
+    $this->dbname = DB_NAME;
+    $this->user = DB_USER;
+    $this->password = DB_PASSWORD;
 
     $this->init();
   }

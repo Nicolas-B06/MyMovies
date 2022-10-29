@@ -1,10 +1,11 @@
 <?php
 
-require_once "DB.php";
+require_once dirname(__DIR__) . "/class/DB.php";
 
 class Playlist
 {
-  private $id, $userId, $name, $isPrivate, $duration, $movies, $db, $table, $moviesTable;
+  protected $db, $table, $moviesTable;
+  private $id, $userId, $name, $isPrivate, $duration, $movies;
 
   public function __construct($userId = null, $name = null, $isPrivate = null, $duration = 0)
   {
@@ -13,7 +14,6 @@ class Playlist
     $this->moviesTable = "playlist_movie";
 
     $this->userId = $userId;
-    $this->id = null;
     $this->name = $name;
     $this->isPrivate = $isPrivate;
     $this->duration = $duration;
