@@ -1,17 +1,4 @@
-<?php
-
-use MyMovies\Connection;
-use MyMovies\PlaylistTable;
-
-include './includes/header.php';
-
-require './Connection.php';
-require './table/PlaylistTable.php';
-
-$t = new PlaylistTable(Connection::getPDO());
-$r = $t->find(4);
-
-print_r($r);
+<?php include './includes/header.php';
 
 ?>
 
