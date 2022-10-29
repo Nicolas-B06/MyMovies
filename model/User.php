@@ -1,5 +1,5 @@
 <?php
-require_once 'DB.php';
+require_once 'Connection.php';
 
 class User
 {
@@ -13,7 +13,7 @@ class User
 
     public function __construct($name = null, $password = null, $email = null, $role = null)
     {
-        $this->db = new DB();
+        $this->db = Connection::getPDO();
         $this->table = "user";
 
         $this->name = $name;
@@ -26,7 +26,7 @@ class User
     {
         $sql = "SELECT * FROM users WHERE email = :email";
         try {
-            $stm = $this->db->connect()->prepare($sql);
+            $stm = $this->db->prepare($sql);
             $stm->execute(['email' => $email]);
             $row = $stm->fetch();
             if ($row) {
@@ -44,7 +44,7 @@ class User
     {
         $sql = "SELECT * From users";
         try {
-            $stm = $this->db->connect()->prepare($sql);
+            $stm = $this->db->prepare($sql);
             $stm->execute();
             $rows = $stm->fetchAll();
 
@@ -63,7 +63,7 @@ class User
     {
         $sql = "UPDATE $this->table SET name = :name, email = :email, role = :role WHERE id = :id";
         try {
-            $stm = $this->db->connect()->prepare($sql);
+            $stm = $this->db->prepare($sql);
             $stm->execute([
                 'name' => $this->name,
                 'email' => $this->email,
@@ -79,7 +79,7 @@ class User
     {
         $sql = "DELETE FROM $this->table WHERE id = :id";
         try {
-            $stm = $this->db->connect()->prepare($sql);
+            $stm = $this->db->prepare($sql);
             $stm->execute(['id' => $id]);
         } catch (Exception $e) {
             die($e->getMessage());
@@ -90,7 +90,7 @@ class User
     {
         $sql = "INSERT INTO $this->table (name, password, email, role) VALUES(:name, :password, :email, :role)";
         try {
-            $stm = $this->db->connect()->prepare($sql);
+            $stm = $this->db->prepare($sql);
             $res = $stm->execute([
                 'name' => $this->name,
                 'password' => password_hash($this->password, PASSWORD_BCRYPT),
@@ -98,7 +98,7 @@ class User
                 'role' => $this->role
             ]);
             if ($res) {
-                $this->id = $this->db->connect()->lastInsertId();
+                $this->id = $this->db->lastInsertId();
             }
         } catch (Exception $e) {
             die($e->getMessage());
