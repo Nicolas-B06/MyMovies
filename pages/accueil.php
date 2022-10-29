@@ -1,9 +1,5 @@
 <?php include './includes/header.php';
 
-include './class/Auth.php';
-
-Auth::check();
-
 ?>
 
 <main>
