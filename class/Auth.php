@@ -5,8 +5,12 @@ namespace MyMovies;
 use PDO;
 use PDOException;
 
+require_once './class/Connection.php';
+
 class Auth
 {
+  private static $table = 'user';
+
   public static function register(User $user)
   {
     // TODO : UserModel
@@ -15,7 +19,7 @@ class Auth
 
   public static function login($email, $password)
   {
-    $sql = "SELECT id, password WHERE email = :email";
+    $sql = "SELECT id, password FROM " . self::$table . " WHERE email = :email";
     $pdo = Connection::getPDO();
     try {
       $query = $pdo->prepare($sql);
