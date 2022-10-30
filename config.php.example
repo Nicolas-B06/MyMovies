@@ -4,3 +4,6 @@ define("DB_HOST", 'host');
 define("DB_USER", 'user');
 define("DB_PASSWORD", 'password');
 define("DB_NAME", 'dbname');
+
+define("API_URI", 'https://api.themoviedb.org/3/');
+define("API_KEY", 'your-api-key');
