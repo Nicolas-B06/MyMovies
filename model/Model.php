@@ -5,7 +5,7 @@ namespace MyMovies;
 use PDO;
 use Exception;
 
-abstract class Table
+abstract class Model
 {
   protected $pdo;
   protected $table = null;
