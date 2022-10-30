@@ -1,4 +1,9 @@
 <?php
+
+namespace MyMovies;
+
+use Exception;
+
 require_once 'Connection.php';
 
 class User
