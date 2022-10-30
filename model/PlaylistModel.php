@@ -16,13 +16,13 @@ final class PlaylistModel extends Model
 
   protected $movieTable = 'playlist_movie';
 
-  public function getMovies()
+  public function getMovies($playlistId)
   {
     $sql = "SELECT * FROM" . $this->movieTable . " WHERE playlist id = :id";
     try {
       $query = $this->pdo->prepare($sql);
       $query->setFetchMode(PDO::FETCH_OBJ);
-      return $query->execute(['id' => $this->id]);
+      return $query->execute(['id' => $playlistId]);
     } catch (PDOException $e) {
       die($e->getMessage());
     }
