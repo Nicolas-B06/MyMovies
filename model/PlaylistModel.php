@@ -16,6 +16,19 @@ final class PlaylistModel extends Model
 
   protected $movieTable = 'playlist_movie';
 
+  public function findByUserId($userId)
+  {
+    $sql = "SELECT * FROM " . $this->table . " WHERE userId = :userId";
+    try {
+      $query = $this->pdo->prepare($sql);
+      $query->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->class);
+      $query->execute(['userId' => $userId]);
+      return $query->fetchAll();
+    } catch (PDOException $e) {
+      die($e->getMessage());
+    }
+  }
+
   public function getMovies($playlistId)
   {
     $sql = "SELECT * FROM" . $this->movieTable . " WHERE playlist id = :id";
