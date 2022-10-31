@@ -43,6 +43,7 @@ class Auth
     unset($_SESSION['auth:id']);
     unset($_SESSION['auth:role']);
     session_destroy();
+    header('Location: /');
   }
 
   public static function check($role = 0)
