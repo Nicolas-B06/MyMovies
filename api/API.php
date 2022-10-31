@@ -4,7 +4,7 @@ namespace MyMovies;
 
 require_once './config.php';
 
-class API
+abstract class API
 {
   protected $curl;
   protected $ressource = '';
