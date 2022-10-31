@@ -19,7 +19,7 @@ class Auth
 
   public static function login($email, $password)
   {
-    $sql = "SELECT id, password FROM " . self::$table . " WHERE email = :email";
+    $sql = "SELECT id, role, password FROM " . self::$table . " WHERE email = :email";
     $pdo = Connection::getPDO();
     try {
       $query = $pdo->prepare($sql);
@@ -29,7 +29,8 @@ class Auth
 
       $verify = password_verify($password, $result->password);
       if ($verify) {
-        $_SESSION['auth'] = $result->id;
+        $_SESSION['auth:id'] = $result->id;
+        $_SESSION['auth:role'] = $result->role;
       }
       return $verify;
     } catch (PDOException $e) {
@@ -39,13 +40,17 @@ class Auth
 
   public static function logout()
   {
-    unset($_SESSION['auth']);
+    unset($_SESSION['auth:id']);
+    unset($_SESSION['auth:role']);
     session_destroy();
   }
 
-  public static function check()
+  public static function check($role = 0)
   {
-    if (!isset($_SESSION['auth']) || empty($_SESSION['auth'])) {
+    if (!isset($_SESSION['auth:id']) || empty($_SESSION['auth:id'])) {
+      header('Location: /login');
+    }
+    if (!isset($_SESSION['auth:role']) || (int) $_SESSION['auth:role'] < $role) {
       header('Location: /login');
     }
   }
