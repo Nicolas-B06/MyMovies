@@ -31,8 +31,8 @@ class Auth
       if ($verify) {
         $_SESSION['auth:id'] = $result->id;
         $_SESSION['auth:role'] = $result->role;
+        header('Location: /');
       }
-      header('Location: /');
     } catch (PDOException $e) {
       die($e->getMessage());
     }
