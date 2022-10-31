@@ -32,7 +32,7 @@ class Auth
         $_SESSION['auth:id'] = $result->id;
         $_SESSION['auth:role'] = $result->role;
       }
-      return $verify;
+      header('Location: /');
     } catch (PDOException $e) {
       die($e->getMessage());
     }
