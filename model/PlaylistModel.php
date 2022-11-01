@@ -29,19 +29,20 @@ final class PlaylistModel extends Model
     }
   }
 
-  public function getMovies($playlistId)
+  public function getMovieIds($playlistId)
   {
-    $sql = "SELECT * FROM" . $this->movieTable . " WHERE playlist id = :id";
+    $sql = "SELECT * FROM " . $this->movieTable . " WHERE playlistId = :playlistId";
     try {
       $query = $this->pdo->prepare($sql);
-      $query->setFetchMode(PDO::FETCH_OBJ);
-      return $query->execute(['id' => $playlistId]);
+      $query->setFetchMode(PDO::FETCH_NUM);
+      $query->execute(['playlistId' => $playlistId]);
+      return $query->fetchAll();
     } catch (PDOException $e) {
       die($e->getMessage());
     }
   }
 
-  public function addMovie($playlistId, $movieId, $movieDuration)
+  public function addMovieId($playlistId, $movieId, $movieDuration)
   {
     $sqlMovie = "INSERT INTO " . $this->movieTable . " VALUES (:playlistId, :movieId)";
     $sqlDuration = "UPDATE " . $this->table . " SET duration = duration + :movieDuration";
@@ -62,7 +63,7 @@ final class PlaylistModel extends Model
     }
   }
 
-  public function removeMovie($playlistId, $movieId, $movieDuration)
+  public function removeMovieId($playlistId, $movieId, $movieDuration)
   {
     $sqlMovie = "DELETE FROM " . $this->movieTable . " WHERE movieId = :movieId AND playlistId = :playlistId";
     $sqlDuration = "UPDATE " . $this->table . " SET duration = duration - :movieDuration";
