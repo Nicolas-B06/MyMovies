@@ -5,11 +5,6 @@ use MyMovies\Connection;
 use MyMovies\MovieAPI;
 use MyMovies\PlaylistModel;
 
-require_once "./class/Auth.php";
-require_once "./class/Connection.php";
-require_once "./model/PlaylistModel.php";
-require_once "./api/MovieAPI.php";
-
 Auth::admin();
 
 $playlistModel = new PlaylistModel(Connection::getPDO());
