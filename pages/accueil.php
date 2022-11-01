@@ -1,12 +1,5 @@
 <?php
 
-use MyMovies\Auth;
-
-if (isset($_POST['email']) && isset($_POST['password'])) {
-    require_once './class/Auth.php';
-    Auth::login($_POST['email'], $_POST['password']);
-}
-
 include './includes/header.php';
 ?>
 

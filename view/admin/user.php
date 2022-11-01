@@ -5,11 +5,6 @@ use MyMovies\Connection;
 use MyMovies\PlaylistModel;
 use MyMovies\UserModel;
 
-require_once "./class/Auth.php";
-require_once "./class/Connection.php";
-
-require_once './model/UserModel.php';
-
 Auth::admin();
 
 $userModel = new UserModel(Connection::getPDO());
