@@ -3,9 +3,9 @@
 namespace MyMovies;
 
 use PDO;
-use PDOException;
 use Exception;
 
+// TODO : Implement exceptions
 abstract class Model
 {
   protected $pdo;
@@ -24,12 +24,8 @@ abstract class Model
       $query = $this->pdo->prepare($sql);
       $query->execute(['id' => $id]);
       $query->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->class);
-      $result = $query->fetch();
-      if (!$result) {
-        return new Exception("Element not found", 404);
-      }
-      return $result;
-    } catch (PDOException $e) {
+      return $query->fetch();
+    } catch (Exception $e) {
       die($e->getMessage());
     }
   }
@@ -39,9 +35,8 @@ abstract class Model
     $sql = "SELECT * FROM " . $this->table;
     try {
       $query = $this->pdo->query($sql);
-      $query->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->class);
-      return $query->fetchAll();
-    } catch (PDOException $e) {
+      return $query->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->class);
+    } catch (Exception $e) {
       die($e->getMessage());
     }
   }
@@ -56,7 +51,7 @@ abstract class Model
       $query = $this->pdo->prepare($sql);
       $query->execute($data);
       return $this->pdo->lastInsertId();
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
       die($e->getMessage());
     }
   }
@@ -70,7 +65,7 @@ abstract class Model
     try {
       $query = $this->pdo->prepare($sql);
       $query->execute($data);
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
       die($e->getMessage());
     }
   }
@@ -81,7 +76,7 @@ abstract class Model
     try {
       $query = $this->pdo->prepare($sql);
       $query->execute(['id' => $id]);
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
       die($e->getMessage());
     }
   }

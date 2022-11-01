@@ -2,6 +2,8 @@
 
 namespace MyMovies;
 
+use MyMovies\UserModel;
+
 use PDO;
 use PDOException;
 
@@ -11,10 +13,20 @@ class Auth
 {
   private static $table = 'user';
 
-  public static function register(User $user)
+  public static function register($data)
   {
-    // TODO : UserModel
-    return $user;
+    $pdo = Connection::getPDO();
+    $userModel = new UserModel($pdo);
+    $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+    try {
+      $result = $userModel->create($data);
+      if ($result > 0) {
+        $_SESSION['auth:id'] = $result;
+        header("Location: /");
+      }
+    } catch (PDOException $e) {
+      die($e->getMessage());
+    }
   }
 
   public static function login($email, $password)
@@ -26,12 +38,11 @@ class Auth
       $query->execute(['email' => $email]);
       $query->setFetchMode(PDO::FETCH_OBJ);
       $result = $query->fetch();
-
       $verify = password_verify($password, $result->password);
       if ($verify) {
-        $_SESSION['auth'] = $result->id;
+        $_SESSION['auth:id'] = $result->id;
+        header("Location: /");
       }
-      return $verify;
     } catch (PDOException $e) {
       die($e->getMessage());
     }
@@ -39,14 +50,36 @@ class Auth
 
   public static function logout()
   {
-    unset($_SESSION['auth']);
+    unset($_SESSION['auth:id']);
+    unset($_SESSION['auth:role']);
     session_destroy();
+    header("Location: /login");
   }
 
   public static function check()
   {
-    if (!isset($_SESSION['auth']) || empty($_SESSION['auth'])) {
+    if (!isset($_SESSION['auth:id']) || empty($_SESSION['auth:id'])) {
       header('Location: /login');
     }
+  }
+
+  public static function admin()
+  {
+    self::check();
+    $pdo = Connection::getPDO();
+    $userModel = new UserModel($pdo);
+
+    if (!isset($_SESSION['auth:role'])) {
+      $user = $userModel->find($_SESSION['auth:id']);
+      $_SESSION['auth:role'] = $user->getRole();
+    }
+    if ((int) $_SESSION['auth:role'] < 1) {
+      header('Location: /error');
+    }
+  }
+
+  public static function id()
+  {
+    return $_SESSION['auth:id'];
   }
 }

@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `playlist` (
   `isPrivate` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_playlist_user` (`userId`) USING BTREE,
-  CONSTRAINT `FK_playlist_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+  CONSTRAINT `FK_playlist_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- Les données exportées n'étaient pas sélectionnées.
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `playlist_movie` (
   `playlistId` int(10) unsigned NOT NULL,
   `movieId` int(10) unsigned NOT NULL,
   PRIMARY KEY (`playlistId`,`movieId`),
-  CONSTRAINT `FK__playlist` FOREIGN KEY (`playlistId`) REFERENCES `playlist` (`id`)
+  CONSTRAINT `FK__playlist` FOREIGN KEY (`playlistId`) REFERENCES `playlist` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Les données exportées n'étaient pas sélectionnées.
@@ -52,6 +52,48 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+INSERT INTO user VALUES
+(1, 'admin', 'admin@admin.a', '$2y$10$.w2W7t4B8l/TB5QBrhBCqe/5owFcm8x/WYGPI3ue0Uk17.l9J8zka', 1),
+(2, 'toto', 'toto@toto.t', '$2y$10$.w2W7t4B8l/TB5QBrhBCqe/5owFcm8x/WYGPI3ue0Uk17.l9J8zka', 0),
+(3, 'tata', 'tata@tata.t', '$2y$10$.w2W7t4B8l/TB5QBrhBCqe/5owFcm8x/WYGPI3ue0Uk17.l9J8zka', 0),
+(4, 'DIO', 'kono@dio.da', '$2y$10$.w2W7t4B8l/TB5QBrhBCqe/5owFcm8x/WYGPI3ue0Uk17.l9J8zka', 0);
+
+INSERT INTO playlist VALUES
+(1, 1, 'fake 001', 10000, 1),
+(2, 1, 'fake 002', 10000, 0),
+(3, 2, 'fake 001', 10000, 1),
+(4, 2, 'fake 002', 10000, 0),
+(5, 3, 'fake 001', 10000, 1),
+(6, 3, 'fake 002', 10000, 0),
+(7, 4, 'fake 001', 10000, 1),
+(8, 4, 'fake 002', 10000, 0);
+
+INSERT INTO playlist_movie VALUES
+(1, 663712),
+(1, 436270),
+(1, 717728),
+(2, 663712),
+(2, 436270),
+(2, 717728),
+(3, 663712),
+(3, 436270),
+(3, 717728),
+(4, 663712),
+(4, 436270),
+(4, 717728),
+(5, 663712),
+(5, 436270),
+(5, 717728),
+(6, 663712),
+(6, 436270),
+(6, 717728),
+(7, 663712),
+(7, 436270),
+(7, 717728),
+(8, 663712),
+(8, 436270),
+(8, 717728);
 
 -- Les données exportées n'étaient pas sélectionnées.
 

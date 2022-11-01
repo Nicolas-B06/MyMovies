@@ -14,122 +14,30 @@ class User
     private $email;
     private $role;
 
-    protected $db, $table;
-
-    public function __construct($name = null, $password = null, $email = null, $role = null)
+    public function __construct($id = null, $password = null, $name = null, $email = null, $role = null)
     {
-        $this->db = Connection::getPDO();
-        $this->table = "user";
-
+        $this->$id = $id;
         $this->name = $name;
         $this->password = $password;
         $this->email = $email;
         $this->role = $role;
     }
 
-    public function fetch($email)
-    {
-        $sql = "SELECT * FROM users WHERE email = :email";
-        try {
-            $stm = $this->db->prepare($sql);
-            $stm->execute(['email' => $email]);
-            $row = $stm->fetch();
-            if ($row) {
-                $this->id = $row->id;
-                $this->name = $row->name;
-                $this->email = $row->email;
-                $this->role = $row->role;
-            }
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function fetchAll()
-    {
-        $sql = "SELECT * From users";
-        try {
-            $stm = $this->db->prepare($sql);
-            $stm->execute();
-            $rows = $stm->fetchAll();
-
-            $users = [];
-            foreach ($rows as $row) {
-                $user = new User($row->id, $row->name, $row->password, $row->email, $row->role);
-                $users[] = $user;
-            }
-            return $users;
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function update()
-    {
-        $sql = "UPDATE $this->table SET name = :name, email = :email, role = :role WHERE id = :id";
-        try {
-            $stm = $this->db->prepare($sql);
-            $stm->execute([
-                'name' => $this->name,
-                'email' => $this->email,
-                'role' => $this->role,
-                'id' => $this->id
-            ]);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function delete($id)
-    {
-        $sql = "DELETE FROM $this->table WHERE id = :id";
-        try {
-            $stm = $this->db->prepare($sql);
-            $stm->execute(['id' => $id]);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function register()
-    {
-        $sql = "INSERT INTO $this->table (name, password, email, role) VALUES(:name, :password, :email, :role)";
-        try {
-            $stm = $this->db->prepare($sql);
-            $res = $stm->execute([
-                'name' => $this->name,
-                'password' => password_hash($this->password, PASSWORD_BCRYPT),
-                'email' => $this->email,
-                'role' => $this->role
-            ]);
-            if ($res) {
-                $this->id = $this->db->lastInsertId();
-            }
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function login($email, $password)
-    {
-        $this->fetch($email);
-
-        $res = password_verify($password, PASSWORD_BCRYPT);
-
-        if ($res) {
-            $_SESSION['auth'] = $this->id;
-        }
-    }
-
-    public function logout()
-    {
-        unset($_SESSION['auth']);
-        session_destroy();
-    }
-
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName()
@@ -140,6 +48,26 @@ class User
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
         return $this;
     }
 
@@ -162,13 +90,6 @@ class User
     public function setRole($role)
     {
         $this->role = $role;
-        return $this;
-    }
-
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
         return $this;
     }
 }
