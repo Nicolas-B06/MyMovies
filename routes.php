@@ -53,4 +53,4 @@ get('/admin/user/$userId/playlist/$playlistId/delete', function ($userId, $playl
 
 // ERRORS
 
-any('/error', 'view/error');
+any('/404', 'view/error');
