@@ -27,9 +27,18 @@ get('/', 'pages/accueil');
 get('/login', 'pages/accueil');
 post('/login', function () {
   Auth::login($_POST['email'], $_POST['password']);
+},);
+
+get('/logout', function () {
+  Auth::logout();
 });
 
 get('/register', 'pages/inscription');
+
+// USER
+
+//Catalogue
+get('/catalogue', 'pages/catalogue');
 
 // ADMIN
 
