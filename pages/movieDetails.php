@@ -36,17 +36,14 @@ ob_start('ob_html_compress');
     <link rel="alternate" href="http://www.votresite.com" hreflang="es" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;700&display=swap" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <title>MyMovies</title>
 </head>
-
 <body class="d-flex flex-column min-vh-100">
     <noscript>il faut autoriser le javascript</noscript>
     <header>
@@ -81,83 +78,35 @@ ob_start('ob_html_compress');
                 </div>
             </div>
         </nav>
-        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Accueil</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Catalogue</li>
-            </ol>
-        </nav>
     </header>
-
-    <main>
-
-        <section class="d-flex justify-content-center">
-            <div id="carouselExampleIndicators" class="carousel slide w-25" data-bs-ride="true">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="./assets/img/affiche-film-joker.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./assets/img/affiche-film-joker.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./assets/img/affiche-film-joker.jpg" class="d-block w-100" alt="...">
+    <main class="mt-5 mb-5">
+        <div class="container">
+            <div class="container-wrap">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>23 Janvier 2017</h3>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </section>
-        <section class="container">
-            <div class="d-flex justify-content-between">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filtre
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
-                <div class="input-group rounded w-25">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <span class="input-group-text border-0" id="search-addon">
-                        <i class="bi bi-search"></i>
-                    </span>
-                </div>
-            </div>
-        </section>
-        <section class="container">
-            <div>
-                <div class="card" style="width: 18rem;">
-                    <img src="./assets/img/affiche-film-joker.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <img src="http://res.cloudinary.com/ds5sqpkiz/image/upload/c_scale,h_600,w_500/v1517280184/get-out_1481570504_i5dlu2.jpg" />
+                    </div>
+                    <div class="col-md-6 col-xs-12 text-center">
+                        <h1>Get Out</h1>
+                        <a href="https://www.youtube.com/watch?v=sRfnevzM9kQ">Preview Movie</a>
+                        <p>Get Out was... AMAZING! It's hard to talk about the movie without giving away the entire plot, but I can say that it's defintely a movie worth watching. It's a phsycological thriller about a black man and his white girlfriend, who go to the girl's parents house for the weekend. All I can say is after that some seriously crazy stuff goes down. I watched the movie with a group of friends (very much recommmended to watch with friends) and every 15 minutes we would pause and guess what would happen at the end. One of the most well-done movies I've watched in while. Be prepared to be scared and creeped out. </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        </div>
     </main>
-
-    <footer class="mt-5 bg-dark">
+    <footer class="mt-auto bg-dark">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Mentions légales</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-white">A propos</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Contact</a></li>
         </ul>
-        <p class="text-center text-muted">© 2022 Company, Inc</p>
+        <p class="text-center text-muted">© 2022 MyMovies, Inc</p>
     </footer>
+</body>
