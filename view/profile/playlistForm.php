@@ -1,4 +1,10 @@
-<?php inc_header(); ?>
+<?php
+
+use MyMovies\Auth;
+
+Auth::check();
+
+inc_header(); ?>
 
 <main class="my-5">
     <div class="container">

@@ -7,6 +7,7 @@ use MyMovies\UserModel;
 
 Auth::check();
 
+$userId = Auth::id();
 $userModel = new UserModel(Connection::getPDO());
 $user = $userModel->find($userId);
 

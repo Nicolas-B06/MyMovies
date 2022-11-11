@@ -3,7 +3,13 @@
 use MyMovies\MovieAPI;
 
 $movieApi = new MovieAPI();
-$movies = $movieApi->popular();
+
+if (isset($_POST['search'])) {
+  $movies = $movieApi->search($_POST['search']);
+} else {
+  $movies = $movieApi->popular();
+}
+
 
 // Header
 inc_header(
@@ -17,6 +23,10 @@ inc_header(
   <section id="movies">
     <div class="container">
       <h1 class="mb-5">Les films populaires du moment</h1>
+      <form class="d-flex mb-5" action="/movie" method="POST">
+        <input name="search" class="form-control me-2" type="search" placeholder="Search" value="<?= isset($_POST['search']) ? $_POST['search'] : '' ?>" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Rechercher</button>
+      </form>
       <div class="row">
         <?php foreach ($movies as $movie) : ?>
           <div class="col col-12 col-sm-6 col-md-4 col-lg-3">

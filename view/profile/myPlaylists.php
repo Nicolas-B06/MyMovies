@@ -26,10 +26,12 @@ inc_header(); ?>
                 <tbody>
                     <?php foreach ($playlists as $playlist) : ?>
                         <tr>
-                            <td><?= htmlspecialchars($playlist->getName()) ?></td>
-                            <td><?= formatTime(htmlspecialchars($playlist->getDuration())) ?></td>
                             <td>
-                                <a class="" href="/playlist/<?= htmlspecialchars($playlist->getId()) ?>">Voir la playlist</a>
+                                <a href="/playlist/<?= htmlspecialchars($playlist->getId()) ?>"><?= htmlspecialchars($playlist->getName()) ?></a>
+                            </td>
+                            <td><?= formatTime(htmlspecialchars($playlist->getDuration())) ?></td>
+                            <td class="text-end">
+                                <a class="btn btn-danger" href="/playlist/<?= htmlspecialchars($playlist->getId()) ?>/delete">Supprimer</a>
                             </td>
                         </tr>
                     <?php endforeach ?>
