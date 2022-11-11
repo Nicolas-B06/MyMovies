@@ -1,6 +1,6 @@
-<?php include './includes/header.php' ?>
+<?php inc_header('Inscription', "C'est la page de l'inscription"); ?>
 
-<main>
+<main class="my-5">
     <div class="container">
         <div class="card">
             <h1 class="card-header text-center">Inscription</h1>
@@ -15,12 +15,12 @@
                     <label for="password" class=" col-form-label">Password</label>
                     <input name="password" type="password" class="form-control" id="password">
 
-                    <button type="submit" class="btn btn-primary mt-3">Connexion</button>
+                    <button type="submit" class="btn btn-primary mt-3">Inscription</button>
                 </form>
             </div>
-            <p class="card-footer text-center">Vous avez déjà un compte ? <a href="/login">Connectez vous</a></p>
+            <p class="card-footer text-center mt-3">Vous avez déjà un compte ? <a href="/login">Connectez vous</a></p>
         </div>
     </div>
 </main>
 
-<?php include './includes/footer.php' ?>
+<?php inc_footer(); ?>

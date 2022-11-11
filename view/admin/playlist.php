@@ -25,9 +25,9 @@ foreach ($movieIds as $movieId) {
 
 ?>
 
-<!-- Header -->
+<?php inc_header(); ?>
 
-<main>
+<main class="my-5">
   <div>
     <div><?= htmlspecialchars($playlist->getName()) ?></div>
     <div><?= htmlspecialchars($playlist->getDuration()) ?></div>
@@ -53,4 +53,4 @@ foreach ($movieIds as $movieId) {
   <p class="text-center text-muted">© 2022 Company, Inc</p>
 </footer>
 
-<!-- Footer -->
+<?php inc_footer(); ?>

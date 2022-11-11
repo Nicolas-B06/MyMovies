@@ -44,6 +44,7 @@ ob_start('ob_html_compress');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <title>MyMovies</title>
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <noscript>il faut autoriser le javascript</noscript>
     <header>
@@ -110,3 +111,5 @@ ob_start('ob_html_compress');
         <p class="text-center text-muted">© 2022 MyMovies, Inc</p>
     </footer>
 </body>
+
+</html>

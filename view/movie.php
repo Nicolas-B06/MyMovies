@@ -14,11 +14,16 @@ if (Auth::id() > 0) {
 }
 
 // Header
-include_once "./includes/header.php";
+inc_header(
+  'Les films populaires du moment',
+  'Fusce scelerisque pellentesque consequat. Duis pharetra nibh magna, ac blandit tortor posuere rhoncus.',
+  '',
+  ['populaire']
+)
 
 ?>
 
-<main>
+<main class="my-5">
   <section id="movie">
     <div class="container">
       <div class="row">
@@ -70,3 +75,4 @@ include_once "./includes/header.php";
   }
   }
 </script>
+<?php inc_footer(); ?>

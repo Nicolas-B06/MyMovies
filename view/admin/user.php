@@ -19,9 +19,9 @@ if (!$user) {
 
 ?>
 
-<!-- Header -->
+<?php inc_header(); ?>
 
-<main>
+<main class="my-5">
   <div>
     <div><?= htmlspecialchars($user->getName()) ?></div>
     <div><?= htmlspecialchars($user->getEmail()) ?></div>
@@ -41,4 +41,4 @@ if (!$user) {
   </div>
 </main>
 
-<!-- Footer -->
+<?php inc_footer(); ?>

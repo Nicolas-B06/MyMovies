@@ -11,8 +11,8 @@ $users = $userModel->all();
 
 ?>
 
-<!-- Header -->
-<main>
+<?php inc_header(); ?>
+<main class="my-5">
   <?php foreach ($users as $user) : ?>
     <div>
       <div><?= htmlspecialchars($user->getName()) ?></div>
@@ -21,4 +21,4 @@ $users = $userModel->all();
   <?php endforeach ?>
 </main>
 
-<!-- Footer -->
+<?php inc_footer(); ?>
