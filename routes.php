@@ -58,19 +58,13 @@ get('/user', 'view/profile/myAccount');
 get(`/playlist`, 'view/profile/myPlaylist');
 
 // legal mentions
-get('/legalMentions', 'view/legal');
+get('/legal', 'view/legal');
 
 // contact
 get('/contact', 'view/contact');
 
-// about 
+// about
 get('/about', 'view/about');
-
-//Catalogue
-get('/catalogue', 'view/catalogue');
-
-// Movie details **** Ne pas oublier de mettre l'id du film dans l'url /:id ****
-get('/movie', 'view/movieDetails');
 
 // ADMIN
 
