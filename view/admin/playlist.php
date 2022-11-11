@@ -27,20 +27,22 @@ foreach ($movieIds as $movieId) {
 
 <!-- Header -->
 
-<div>
-  <div><?= htmlspecialchars($playlist->getName()) ?></div>
-  <div><?= htmlspecialchars($playlist->getDuration()) ?></div>
-  <form action="<?= "/admin/user/" . $userId . "/playlist/" . htmlspecialchars($playlist->getId()) . "/delete" ?>" method="get">
-    <button type="submit">Supprimer la playlist</button>
-  </form>
-</div>
-
-<?php foreach ($movies as $movie) : ?>
+<main>
   <div>
-    <div><?= htmlspecialchars($movie->getTitle()) ?></div>
-    <div><?= htmlspecialchars($movie->getOverview()) ?></div>
+    <div><?= htmlspecialchars($playlist->getName()) ?></div>
+    <div><?= htmlspecialchars($playlist->getDuration()) ?></div>
+    <form action="<?= "/admin/user/" . $userId . "/playlist/" . htmlspecialchars($playlist->getId()) . "/delete" ?>" method="get">
+      <button type="submit">Supprimer la playlist</button>
+    </form>
   </div>
-<?php endforeach ?>
+
+  <?php foreach ($movies as $movie) : ?>
+    <div>
+      <div><?= htmlspecialchars($movie->getTitle()) ?></div>
+      <div><?= htmlspecialchars($movie->getOverview()) ?></div>
+    </div>
+  <?php endforeach ?>
+</main>
 
 <footer class="mt-auto bg-dark">
   <ul class="nav justify-content-center border-bottom pb-3 mb-3">

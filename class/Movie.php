@@ -7,7 +7,10 @@ class Movie
   private $overview;
   private $posterPath;
   private $voteAverage;
+  private $runtime;
   private $genres;
+
+  private $basePosterPath = "https://image.tmdb.org/t/p/";
 
   public function __construct($data)
   {
@@ -26,6 +29,9 @@ class Movie
     if (isset($data->vote_average)) {
       $this->voteAverage = $data->vote_average;
     }
+    if (isset($data->runtime)) {
+      $this->runtime = $data->runtime;
+    }
     if (isset($data->genres)) {
       $this->genres = $data->genres;
     }
@@ -40,35 +46,11 @@ class Movie
   }
 
   /**
-   * Set the value of id
-   *
-   * @return  self
-   */
-  public function setId($id)
-  {
-    $this->id = $id;
-
-    return $this;
-  }
-
-  /**
    * Get the value of title
    */
   public function getTitle()
   {
     return $this->title;
-  }
-
-  /**
-   * Set the value of title
-   *
-   * @return  self
-   */
-  public function setTitle($title)
-  {
-    $this->title = $title;
-
-    return $this;
   }
 
   /**
@@ -80,35 +62,11 @@ class Movie
   }
 
   /**
-   * Set the value of overview
-   *
-   * @return  self
-   */
-  public function setOverview($overview)
-  {
-    $this->overview = $overview;
-
-    return $this;
-  }
-
-  /**
    * Get the value of posterPath
    */
-  public function getPosterPath()
+  public function getPosterPath($size)
   {
-    return $this->posterPath;
-  }
-
-  /**
-   * Set the value of posterPath
-   *
-   * @return  self
-   */
-  public function setPosterPath($posterPath)
-  {
-    $this->posterPath = $posterPath;
-
-    return $this;
+    return $this->basePosterPath . "w" . $size . "/" . $this->posterPath;
   }
 
   /**
@@ -120,15 +78,11 @@ class Movie
   }
 
   /**
-   * Set the value of voteAverage
-   *
-   * @return  self
+   * Get the value of runtime
    */
-  public function setVoteAverage($voteAverage)
+  public function getRuntime()
   {
-    $this->voteAverage = $voteAverage;
-
-    return $this;
+    return $this->runtime;
   }
 
   /**
@@ -137,17 +91,5 @@ class Movie
   public function getGenres()
   {
     return $this->genres;
-  }
-
-  /**
-   * Set the value of genres
-   *
-   * @return  self
-   */
-  public function setGenres($genres)
-  {
-    $this->genres = $genres;
-
-    return $this;
   }
 }

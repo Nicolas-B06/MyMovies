@@ -1,0 +1,13 @@
+img {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+img.contain {
+  object-fit: contain;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+img.cover {
+  object-fit: cover;
+  max-width: 100%;
+}

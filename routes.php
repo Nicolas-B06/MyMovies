@@ -2,11 +2,12 @@
 
 use MyMovies\Auth;
 use MyMovies\Connection;
-
+use MyMovies\MovieAPI;
 use MyMovies\UserModel;
 use MyMovies\PlaylistModel;
 
 // All imports here
+require_once './functions.php';
 require_once './class/Connection.php';
 require_once './class/Auth.php';
 require_once './model/Model.php';
@@ -22,9 +23,9 @@ require_once './class/Movie.php';
 
 require_once __DIR__ . '/router.php';
 
-get('/', 'pages/accueil');
+get('/', '/view/movies');
+get('/login', 'view/login');
 
-get('/login', 'pages/accueil');
 post('/login', function () {
   Auth::login($_POST['email'], $_POST['password']);
 },);
@@ -33,7 +34,24 @@ get('/logout', function () {
   Auth::logout();
 });
 
-get('/register', 'pages/inscription');
+get('/register', 'view/register');
+
+post('/register', function () {
+  Auth::register($_POST);
+});
+
+get('/movie', 'view/movies');
+get('/movie/$id', 'view/movie');
+
+get('/playlist/$playlistId/addMovie/$movieId', function ($playlistId, $movieId) {
+
+  $playlistModel = new PlaylistModel(Connection::getPDO());
+  $movieApi = new MovieAPI();
+  $movie = $movieApi->find($movieId);
+
+  $playlistModel->addMovieId($playlistId, $movie->getId(), $movie->getRuntime());
+  header("Location: /movie/$movieId");
+});
 
 // USER
 get('/user', 'pages/profile/myAccount');

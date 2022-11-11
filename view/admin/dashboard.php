@@ -12,28 +12,13 @@ $users = $userModel->all();
 ?>
 
 <!-- Header -->
-<header>
-    <h1>Administration</h1>
-    <nav>
-        <a href="/admin">Dashboard</a>
-        <a href="/admin/user">Utilisateurs</a>
-        <a href="/admin/playlist">Playlists</a>
-        <a href="/admin/movie">Films</a>
-    </nav>
+<main>
+  <?php foreach ($users as $user) : ?>
     <div>
-        <a href="/logout">Déconnexion</a>
+      <div><?= htmlspecialchars($user->getName()) ?></div>
+      <a href="<?= "/admin/user/" . htmlspecialchars($user->getId()) ?>">Voir profil</a>
     </div>
-</header>
+  <?php endforeach ?>
+</main>
 
-<?php foreach ($users as $user) : ?>
-  <div>
-    <div><?= htmlspecialchars($user->getName()) ?></div>
-    <a href="<?= "/admin/user/" . htmlspecialchars($user->getId()) ?>">Voir profil</a>
-  </div>
-<?php endforeach ?>
-
-<footer>
-    <a href="">Mentions légales</a>
-    <p>MyMovies &copy; 2021</p>
-</footer>
 <!-- Footer -->
