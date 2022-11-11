@@ -10,7 +10,6 @@ if (isset($_POST['search'])) {
   $movies = $movieApi->popular();
 }
 
-
 // Header
 inc_header(
   'Les films populaires du moment',
