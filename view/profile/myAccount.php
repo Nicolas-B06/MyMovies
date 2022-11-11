@@ -21,27 +21,66 @@ inc_header(); ?>
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-center">Mon Compte</h1>
-                </div>
-                <div>
-                    <div><?= htmlspecialchars($user->getName()) ?></div>
-                    <div><?= htmlspecialchars($user->getEmail()) ?></div>
-                    <div><?= htmlspecialchars($user->getPassword()) ?></div>
-                    <div><?= htmlspecialchars($user->getRole()) ?></div>
-                    <form action="<?= "/admin/user/" . htmlspecialchars($user->getId()) . "/delete" ?>" method="get">
-                        <button type="submit">Supprimer l'utilisateur</button>
-                    </form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card mb-5">
+                                    <div class="card-header">
+                                        <h3 class="card-title
+                                        ">Mes informations</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group
+                                                ">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" class="form-control" id="email" name="email" value="<?= $user->getEmail() ?>" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="name">Nom</label>
+                                                    <input type="text" class="form-control" id="name" name="name" value="<?= $user->getName() ?>" disabled>
+                                                </div>
+                                            </div>
 
-                    <?php foreach ($playlists as $playlist) : ?>
-                        <div>
-                            <div><?= htmlspecialchars($playlist->getName()) ?></div>
-                            <a href="<?= "/admin/user/" . $userId . "/playlist/" . htmlspecialchars($playlist->getId()) ?>">Voir playlist</a>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="/admin/user/<?= $user->getId() ?>/delete" class="btn btn-danger mt-3">Supprimer mon compte</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    <?php endforeach ?>
-
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>Mes playlists</h2>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($playlists as $playlist) : ?>
+                                            <tr>
+                                                <th scope="row"><?= $playlist->getId() ?></th>
+                                                <td><?= htmlspecialchars($playlist->getName()) ?></td>
+                                                <td>
+                                                    <a href="<?= "/user/" . $userId . "/playlist/" . htmlspecialchars($playlist->getId()) ?>" class="btn btn-primary">Voir</a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
-    </div>
 </main>
 <?php inc_footer(); ?>

@@ -82,6 +82,8 @@ get('/playlist/$playlistId/movie/$movieId/delete', function ($playlistId, $movie
   $playlistModel->removeMovieId($playlistId, $movie->getId(), $movie->getRuntime());
   header("Location: /playlist");
 });
+get('/user', 'view/profile/myAccount');
+get('/user/playlist/$playlistId', 'view/profile/myPlaylist');
 
 // legal mentions
 get('/legal', 'view/legal');
