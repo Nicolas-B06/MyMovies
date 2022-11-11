@@ -71,7 +71,7 @@ inc_header("MyMovies - Mon Compte",
                                                 <th scope="row"><?= $playlist->getId() ?></th>
                                                 <td><?= htmlspecialchars($playlist->getName()) ?></td>
                                                 <td>
-                                                    <a href="<?= "/user/" . $userId . "/playlist/" . htmlspecialchars($playlist->getId()) ?>" class="btn btn-primary">Voir</a>
+                                                    <a href="<?= "/playlist/" . htmlspecialchars($playlist->getId()) ?>" class="btn btn-primary">Voir</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach ?>
