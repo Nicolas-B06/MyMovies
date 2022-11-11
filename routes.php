@@ -55,7 +55,16 @@ get('/playlist/$playlistId/addMovie/$movieId', function ($playlistId, $movieId) 
 
 // USER
 get('/user', 'view/profile/myAccount');
-get('/playlist', 'view/profile/myPlaylist');
+get('/playlist', 'view/profile/myPlaylists');
+get('/playlist/create', 'view/profile/playlistForm');
+post('/playlist', function () {
+  $data = $_POST;
+  $data['userId'] = Auth::id();
+  $playlistModel = new PlaylistModel(Connection::getPDO());
+  $id = $playlistModel->create($data);
+  header("Location: /playlist/$id");
+});
+get('/playlist/$playlistId', 'view/profile/myPlaylist');
 
 // legal mentions
 get('/legal', 'view/legal');

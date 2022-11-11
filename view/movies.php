@@ -21,11 +21,11 @@ inc_header(
         <?php foreach ($movies as $movie) : ?>
           <div class="col col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card mb-2">
-              <img class="card-img-top contain lozad" width="200" height="300" src="<?= $movie->getPosterPath(200); ?>" alt="<?= "Poster du film : " . $movie->getTitle(); ?>">
+              <img class="card-img-top contain lozad" width="200" height="300" src="<?= htmlspecialchars($movie->getPosterPath(200)); ?>" alt="<?= "Poster du film : " . htmlspecialchars($movie->getTitle()); ?>">
               <div class="card-body">
-                <p class="card-title h5"><?= $movie->getTitle(); ?></p>
-                <p class="card-text"><?= substr($movie->getOverview(), 0, 100) . "..." ?></p>
-                <a href="/movie/<?= $movie->getId(); ?>" class="btn btn-primary">Details</a>
+                <p class="card-title h5"><?= htmlspecialchars($movie->getTitle()); ?></p>
+                <p class="card-text"><?= substr(htmlspecialchars($movie->getOverview()), 0, 100) . "..." ?></p>
+                <a href="/movie/<?= htmlspecialchars($movie->getId()); ?>" class="btn btn-primary">Details</a>
               </div>
             </div>
           </div>
