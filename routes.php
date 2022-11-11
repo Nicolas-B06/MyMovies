@@ -54,23 +54,23 @@ get('/playlist/$playlistId/addMovie/$movieId', function ($playlistId, $movieId) 
 });
 
 // USER
-get('/user', 'pages/profile/myAccount');
-get(`/playlist`, 'pages/profile/myPlaylist');
+get('/user', 'view/profile/myAccount');
+get(`/playlist`, 'view/profile/myPlaylist');
 
 // legal mentions
-get('/legalMentions', 'pages/legal');
+get('/legalMentions', 'view/legal');
 
 // contact
-get('/contact', 'pages/contact');
+get('/contact', 'view/contact');
 
 // about 
-get('/about', 'pages/about');
+get('/about', 'view/about');
 
 //Catalogue
-get('/catalogue', 'pages/catalogue');
+get('/catalogue', 'view/catalogue');
 
 // Movie details **** Ne pas oublier de mettre l'id du film dans l'url /:id ****
-get('/movie', 'pages/movieDetails');
+get('/movie', 'view/movieDetails');
 
 // ADMIN
 
