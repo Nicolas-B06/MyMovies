@@ -16,7 +16,7 @@ $movieApi = new MovieAPI();
 
 $movies = [];
 foreach ($movieIds as $movieId) {
-    $movies[] = $movieApi->find($movieId[1]);
+  $movies[] = $movieApi->find($movieId[1]);
 }
 
 inc_header("MyMovies - Mes playlistes",
@@ -48,7 +48,7 @@ inc_header("MyMovies - Mes playlistes",
                         <a href="<?= "/movie/" . $movie->getId() ?>" class="btn btn-primary">Voir</a>
                       </td>
                       <td>
-                        <a href="<?= "/playlist/" . $playlist->getId() . "/remove/" . $movie->getId() ?>" class="btn btn-danger">Supprimer</a>
+                        <a href="<?= "/playlist/" . $playlist->getId() . "/movie/" . $movie->getId() . "/delete" ?>" class="btn btn-danger">Supprimer</a>
                       </td>
                     </tr>
                   <?php endforeach ?>

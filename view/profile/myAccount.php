@@ -7,6 +7,7 @@ use MyMovies\UserModel;
 
 Auth::check();
 
+$userId = Auth::id();
 $userModel = new UserModel(Connection::getPDO());
 $user = $userModel->find($userId);
 
@@ -46,7 +47,7 @@ inc_header("MyMovies - Mon Compte",
                                             </div>
 
                                             <div class="d-flex justify-content-center">
-                                                <a href="/admin/user/<?= $user->getId() ?>/delete" class="btn btn-danger mt-3">Supprimer mon compte</a>
+                                                <a href="/user/delete" class="btn btn-danger mt-3">Supprimer mon compte</a>
                                             </div>
                                         </div>
                                     </div>
