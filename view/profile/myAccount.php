@@ -14,7 +14,8 @@ $user = $userModel->find($userId);
 $playlistModel = new PlaylistModel(Connection::getPDO());
 $playlists = $playlistModel->findByUserId($userId);
 
-inc_header(); ?>
+inc_header("MyMovies - Mon Compte",
+'Fusce scelerisque pellentesque consequat. Duis pharetra nibh magna, ac blandit tortor posuere rhoncus.'); ?>
 <main class="my-5">
     <div class="container">
         <div class="container-wrap">

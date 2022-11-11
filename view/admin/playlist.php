@@ -26,7 +26,8 @@ foreach ($movieIds as $movieId) {
 
 ?>
 
-<?php inc_header(); ?>
+<?php inc_header("MyMovies - Admin playlist",
+  'Fusce scelerisque pellentesque consequat. Duis pharetra nibh magna, ac blandit tortor posuere rhoncus.'); ?>
 
 <main class="my-5">
   <div>

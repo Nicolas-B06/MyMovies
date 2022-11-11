@@ -19,7 +19,8 @@ foreach ($movieIds as $movieId) {
   $movies[] = $movieApi->find($movieId[1]);
 }
 
-inc_header(); ?>
+inc_header("MyMovies - Mes playlistes",
+'Fusce scelerisque pellentesque consequat. Duis pharetra nibh magna, ac blandit tortor posuere rhoncus.'); ?>
 
 
 <main class="my-5">
