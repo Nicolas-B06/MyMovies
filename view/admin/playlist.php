@@ -15,6 +15,7 @@ if (!$playlist) {
 }
 
 $movieIds = $playlistModel->getMovieIds($playlist->getId());
+$playlistName = $playlist->getName();
 
 $movieApi = new MovieAPI();
 
@@ -29,7 +30,7 @@ foreach ($movieIds as $movieId) {
 
 <main class="my-5">
   <div>
-    <h1 class="text-center">Playlist utilisateur</h1>
+    <h1 class="text-center"><?= htmlspecialchars($playlist->getName()) ?></h1>
     <div class="container">
       <div>
         <div class="container">
