@@ -7,7 +7,6 @@ require_once './config.php';
 abstract class API
 {
   protected $curl;
-  protected $ressource = '';
 
   public function __construct()
   {
@@ -20,7 +19,7 @@ abstract class API
 
   protected function get($endpoint = '', $params = [])
   {
-    $route = API_URI . $this->ressource . "/" . $endpoint . "?api_key=" . API_KEY;
+    $route = API_URI . $endpoint . "?api_key=" . API_KEY;
     foreach ($params as $key => $value) {
       $route .= "&" . $key . "=" . $value;
     }

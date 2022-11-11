@@ -28,18 +28,18 @@ inc_header(
     <div class="container">
       <div class="row">
         <div class="col col-12 col-md-8 col-lg-6">
-          <img class="cover lozad" width="500" height="750" src="<?= $movie->getPosterPath(500); ?>" alt="<?= "Poster du film : " . $movie->getTitle(); ?>">
+          <img class="cover lozad" width="500" height="750" src="<?= htmlspecialchars($movie->getPosterPath(500)); ?>" alt="<?= "Poster du film : " . htmlspecialchars($movie->getTitle()); ?>">
         </div>
         <div class="col col-12 col-md-4 col-lg-6">
-          <h1 class="title"><?= $movie->getTitle(); ?></h1>
-          <div class="display-2 mb-5"><?= round($movie->getVoteAverage(), 1) ?><span class="display-6">/10</span></div>
-          <p class="display-6"><?= formatTime($movie->getRuntime()); ?></p>
+          <h1 class="title"><?= htmlspecialchars($movie->getTitle()); ?></h1>
+          <div class="display-2 mb-5"><?= round(htmlspecialchars($movie->getVoteAverage()), 1) ?><span class="display-6">/10</span></div>
+          <p class="display-6"><?= formatTime(htmlspecialchars($movie->getRuntime())); ?></p>
           <div class="badges mb-2">
             <?php foreach ($movie->getGenres() as $genre) : ?>
-              <span class="badge bg-secondary"><?= $genre->name; ?></span>
+              <span class="badge bg-secondary"><?= htmlspecialchars($genre->name); ?></span>
             <?php endforeach; ?>
           </div>
-          <p class=""><?= $movie->getOverview(); ?></p>
+          <p class=""><?= htmlspecialchars($movie->getOverview()); ?></p>
           <?php if (Auth::id() > 0) : ?>
             <div class="dropdown">
               <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="addToPlaylist" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,7 +48,7 @@ inc_header(
 
               <ul class="dropdown-menu" aria-labelledby="addToPlaylist">
                 <?php foreach ($playlists as $playlist) : ?>
-                  <li><a class="dropdown-item" href="<?= "/playlist/" . $playlist->getId() . "/addMovie/" . $movie->getId() ?>"><?= $playlist->getName(); ?></a></li>
+                  <li><a class="dropdown-item" href="<?= "/playlist/" . htmlspecialchars($playlist->getId()) . "/addMovie/" . $movie->getId() ?>"><?= htmlspecialchars($playlist->getName()); ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </div>
@@ -62,15 +62,15 @@ inc_header(
   {
     "@context": "https://schema.org",
     "@type": "Movie",
-    "url": "https://example.com/movie/<?= $movie->getId(); ?>",
-    "name": "<?= $movie->getTitle(); ?>",
-    "image": "<?= $movie->getPosterPath(200); ?>",
+    "url": "https://example.com/movie/<?= htmlspecialchars($movie->getId()); ?>",
+    "name": "<?= htmlspecialchars($movie->getTitle()); ?>",
+    "image": "<?= htmlspecialchars($movie->getPosterPath(200)); ?>",
     "dateCreated": "Unknown",
     "director": "Unknown",
 
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "<?= $movie->getVoteAverage() / 2; ?>",
+      "ratingValue": "<?= htmlspecialchars($movie->getVoteAverage()) / 2; ?>",
     }
   }
   }

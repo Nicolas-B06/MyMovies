@@ -41,6 +41,7 @@ post('/register', function () {
 });
 
 get('/movie', 'view/movies');
+post('/movie', 'view/movies');
 get('/movie/$id', 'view/movie');
 
 get('/playlist/$playlistId/addMovie/$movieId', function ($playlistId, $movieId) {
@@ -54,8 +55,41 @@ get('/playlist/$playlistId/addMovie/$movieId', function ($playlistId, $movieId) 
 });
 
 // USER
-get('/user/$userId', 'view/profile/myAccount');
-get('/user/$userId/playlist/$playlistId', 'view/profile/myPlaylist');
+get('/user', 'view/profile/myAccount');
+get('/user', 'view/profile/myAccount');
+get('/user/playlist/$playlistId', 'view/profile/myPlaylist');
+get('/playlist', 'view/profile/myPlaylists');
+get('/playlist/create', 'view/profile/playlistForm');
+get('/playlist/$playlistId', 'view/profile/myPlaylist');
+
+get('/playlist/$playlistId/delete', function ($playlistId) {
+  $playlistModel = new PlaylistModel(Connection::getPDO());
+  $playlistModel->delete($playlistId);
+  header("Location: /playlist");
+});
+
+post('/playlist', function () {
+  $data = $_POST;
+  $data['userId'] = Auth::id();
+  $playlistModel = new PlaylistModel(Connection::getPDO());
+  $id = $playlistModel->create($data);
+  header("Location: /playlist/$id");
+});
+
+get('/playlist/$playlistId/movie/$movieId/delete', function ($playlistId, $movieId) {
+  $movieApi = new MovieAPI();
+  $movie = $movieApi->find($movieId);
+
+  $playlistModel = new PlaylistModel(Connection::getPDO());
+  $playlistModel->removeMovieId($playlistId, $movie->getId(), $movie->getRuntime());
+  header("Location: /playlist/$playlistId");
+});
+
+get('/user/delete', function () {
+  $userModel = new UserModel(Connection::getPDO());
+  $userModel->delete(Auth::id());
+  Auth::logout();
+});
 
 // legal mentions
 get('/legal', 'view/legal');
@@ -69,16 +103,14 @@ get('/about', 'view/about');
 // ADMIN
 
 get('/admin', 'view/admin/dashboard');
-
 get('/admin/user/$userId', 'view/admin/user');
+get('/admin/user/$userId/playlist/$playlistId', 'view/admin/playlist');
 
 get('/admin/user/$userId/delete', function ($userId) {
   $userModel = new UserModel(Connection::getPDO());
   $userModel->delete($userId);
   header("Location: /admin");
 });
-
-get('/admin/user/$userId/playlist/$playlistId', 'view/admin/playlist');
 
 get('/admin/user/$userId/playlist/$playlistId/delete', function ($userId, $playlistId) {
   $playlistModel = new PlaylistModel(Connection::getPDO());

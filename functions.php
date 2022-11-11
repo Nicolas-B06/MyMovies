@@ -70,7 +70,7 @@ function inc_header($title = '', $desc = '', $img = '', $keywords = [])
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-2">
               <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                <a class="nav-link active text-white" aria-current="page" href="/">Accueil</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="/about">A propos</a>
@@ -80,7 +80,10 @@ function inc_header($title = '', $desc = '', $img = '', $keywords = [])
               </li>
               <?php if (Auth::id() > 0) : ?>
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="/profil">Mon profil</a>
+                  <a class="nav-link text-white" href="/playlist">Mes playlist</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/user">Mon profil</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-white" href="/logout">Me déconnecter</a>
