@@ -80,6 +80,8 @@ class Auth
 
   public static function id()
   {
-    return $_SESSION['auth:id'];
+    if (isset($_SESSION['auth:id'])) {
+      return $_SESSION['auth:id'];
+    }
   }
 }
