@@ -54,8 +54,8 @@ get('/playlist/$playlistId/addMovie/$movieId', function ($playlistId, $movieId) 
 });
 
 // USER
-get('/user', 'view/profile/myAccount');
-get('/playlist', 'view/profile/myPlaylist');
+get('/user/$userId', 'view/profile/myAccount');
+get('/user/$userId/playlist/$playlistId', 'view/profile/myPlaylist');
 
 // legal mentions
 get('/legal', 'view/legal');
