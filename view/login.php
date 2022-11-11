@@ -17,6 +17,7 @@
                 <p class="card-footer text-center mt-3">Vous n'avez pas de compte ? <a href="/register">Inscrivez-vous</a></p>
             </div>
         </div>
+    </div>
 </main>
 
 <?php inc_footer(); ?>

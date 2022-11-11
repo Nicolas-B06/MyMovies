@@ -12,7 +12,6 @@ inc_header(
   '',
   []
 )
-
 ?>
 <main class="my-5">
   <section id="movies">

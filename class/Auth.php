@@ -72,6 +72,7 @@ class Auth
     if (!isset($_SESSION['auth:role'])) {
       $user = $userModel->find($_SESSION['auth:id']);
       $_SESSION['auth:role'] = $user->getRole();
+      header('Location: /admin');
     }
     if ((int) $_SESSION['auth:role'] < 1) {
       header('Location: /error');
