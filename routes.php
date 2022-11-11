@@ -3,6 +3,7 @@
 use MyMovies\Auth;
 use MyMovies\Connection;
 use MyMovies\MovieAPI;
+use MyMovies\Playlist;
 use MyMovies\UserModel;
 use MyMovies\PlaylistModel;
 
@@ -56,6 +57,7 @@ get('/playlist/$playlistId/addMovie/$movieId', function ($playlistId, $movieId) 
 // USER
 get('/user', 'view/profile/myAccount');
 get(`/playlist`, 'view/profile/myPlaylist');
+get('/playlist/new', 'view/profile/playlistForm');
 
 // legal mentions
 get('/legalMentions', 'view/legal');
