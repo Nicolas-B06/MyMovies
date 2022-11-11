@@ -29,19 +29,37 @@ foreach ($movieIds as $movieId) {
 
 <main class="my-5">
   <div>
-    <div><?= htmlspecialchars($playlist->getName()) ?></div>
-    <div><?= htmlspecialchars($playlist->getDuration()) ?></div>
-    <form action="<?= "/admin/user/" . $userId . "/playlist/" . htmlspecialchars($playlist->getId()) . "/delete" ?>" method="get">
-      <button type="submit">Supprimer la playlist</button>
-    </form>
-  </div>
-
-  <?php foreach ($movies as $movie) : ?>
-    <div>
-      <div><?= htmlspecialchars($movie->getTitle()) ?></div>
-      <div><?= htmlspecialchars($movie->getOverview()) ?></div>
+    <h1 class="text-center">Playlist utilisateur</h1>
+    <div class="container">
+      <div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($movies as $movie) : ?>
+                    <tr>
+                      <th scope="row"><?= $movie->getId() ?></th>
+                      <td><?= htmlspecialchars($movie->getTitle()) ?></td>
+                      <td>
+                        <a href="<?= "/movie/" . $movie->getId() ?>" class="btn btn-primary">Voir</a>
+                      </td>
+                    </tr>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <?php endforeach ?>
 </main>
 
 <?php inc_footer(); ?>
