@@ -1,4 +1,5 @@
-<?php inc_header(); ?>
+<?php inc_header("MyMovies - Page 404",
+  'Fusce scelerisque pellentesque consequat. Duis pharetra nibh magna, ac blandit tortor posuere rhoncus.'); ?>
 <main>
     <div class="d-flex align-items-center justify-content-center vh-100">
         <div class="text-center">

@@ -11,7 +11,8 @@ $users = $userModel->all();
 
 ?>
 
-<?php inc_header(); ?>
+<?php inc_header("MyMovies - Admin Dashboard",
+  'Fusce scelerisque pellentesque consequat. Duis pharetra nibh magna, ac blandit tortor posuere rhoncus.'); ?>
 <main class="my-5">
   <div>
     <h1 class="text-center">Dashboard</h1>

@@ -19,7 +19,8 @@ if (!$user) {
 
 ?>
 
-<?php inc_header(); ?>
+<?php inc_header("MyMovies - Admin Playlist utilisateur",
+  'Fusce scelerisque pellentesque consequat. Duis pharetra nibh magna, ac blandit tortor posuere rhoncus.'); ?>
 
 <main class="my-5">
   <div>
