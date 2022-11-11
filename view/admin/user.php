@@ -23,22 +23,42 @@ if (!$user) {
 
 <main class="my-5">
   <div>
-    <div><?= htmlspecialchars($user->getName()) ?></div>
-    <div><?= htmlspecialchars($user->getEmail()) ?></div>
-    <div><?= htmlspecialchars($user->getPassword()) ?></div>
-    <div><?= htmlspecialchars($user->getRole()) ?></div>
-    <form action="<?= "/admin/user/" . htmlspecialchars($user->getId()) . "/delete" ?>" method="get">
-      <button type="submit">Supprimer l'utilisateur</button>
-    </form>
-
-    <?php foreach ($playlists as $playlist) : ?>
+    <h1 class="text-center">Playlist utilisateur</h1>
+    <div class="container">
       <div>
-        <div><?= htmlspecialchars($playlist->getName()) ?></div>
-        <a href="<?= "/admin/user/" . $userId . "/playlist/" . htmlspecialchars($playlist->getId()) ?>">Voir playlist</a>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($playlists as $playlist) : ?>
+                    <tr>
+                      <th scope="row"><?= $playlist->getId() ?></th>
+                      <td><?= htmlspecialchars($playlist->getName()) ?></td>
+                      <td>
+                        <a href="<?= "/admin/user/" . $userId . "/playlist/" . htmlspecialchars($playlist->getId()) ?>" class="btn btn-primary">Voir</a>
+                      </td>
+                    </tr>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
-    <?php endforeach ?>
+
+    </div>
 
   </div>
+
 </main>
 
 <?php inc_footer(); ?>
