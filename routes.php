@@ -27,9 +27,32 @@ get('/', 'pages/accueil');
 get('/login', 'pages/accueil');
 post('/login', function () {
   Auth::login($_POST['email'], $_POST['password']);
+},);
+
+get('/logout', function () {
+  Auth::logout();
 });
 
 get('/register', 'pages/inscription');
+
+// USER
+get('/user', 'pages/profile/myAccount');
+get(`/playlist`, 'pages/profile/myPlaylist');
+
+// legal mentions
+get('/legalMentions', 'pages/legal');
+
+// contact
+get('/contact', 'pages/contact');
+
+// about 
+get('/about', 'pages/about');
+
+//Catalogue
+get('/catalogue', 'pages/catalogue');
+
+// Movie details **** Ne pas oublier de mettre l'id du film dans l'url /:id ****
+get('/movie', 'pages/movieDetails');
 
 // ADMIN
 

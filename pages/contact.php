@@ -36,11 +36,9 @@ ob_start('ob_html_compress');
     <link rel="alternate" href="http://www.votresite.com" hreflang="es" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;700&display=swap" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -70,9 +68,6 @@ ob_start('ob_html_compress');
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#">A propos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Contact</a>
-                        </li>
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -81,83 +76,56 @@ ob_start('ob_html_compress');
                 </div>
             </div>
         </nav>
-        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Accueil</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Catalogue</li>
-            </ol>
-        </nav>
     </header>
+    <main class="mt-5 mb-5">
+        <div class="container">
+            <div class="container-wrap">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="text-center">Nous contacter</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <form action="" method="post">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Votre email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
+                    </div>
+                    <div>
+                        <p>Vous pouvez nous contacter par mail à l'adresse suivante : <a href="mailto:" class="text-decoration-none">
+                            </a></p>
 
-    <main>
-
-        <section class="d-flex justify-content-center">
-            <div id="carouselExampleIndicators" class="carousel slide w-25" data-bs-ride="true">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="./assets/img/affiche-film-joker.jpg" class="d-block w-100" alt="...">
                     </div>
-                    <div class="carousel-item">
-                        <img src="./assets/img/affiche-film-joker.jpg" class="d-block w-100" alt="...">
+                    <div>
+                        <p>Vous pouvez nous contacter par téléphone au : <a href="tel:" class="text-decoration-none">
+                            </a></p>
                     </div>
-                    <div class="carousel-item">
-                        <img src="./assets/img/affiche-film-joker.jpg" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </section>
-        <section class="container">
-            <div class="d-flex justify-content-between">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filtre
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
-                <div class="input-group rounded w-25">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <span class="input-group-text border-0" id="search-addon">
-                        <i class="bi bi-search"></i>
-                    </span>
-                </div>
-            </div>
-        </section>
-        <section class="container">
-            <div>
-                <div class="card" style="width: 18rem;">
-                    <img src="./assets/img/affiche-film-joker.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <div>
+                        <p>Vous pouvez nous contacter par courrier à l'adresse suivante : <a href="https://www.google.com/maps/place/" class="text-decoration-none">
+                            </a></p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        </div>
     </main>
-
-    <footer class="mt-5 bg-dark">
+    <footer class="mt-auto bg-dark">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Mentions légales</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-white">A propos</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Contact</a></li>
         </ul>
-        <p class="text-center text-muted">© 2022 Company, Inc</p>
+        <p class="text-center text-muted">© 2022 MyMovies, Inc</p>
     </footer>
+</body>
